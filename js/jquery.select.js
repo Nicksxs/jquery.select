@@ -3,9 +3,9 @@
     		var defaulOption = {
     			suggestMaxHeight: '200px',//弹出框最大高度
     			itemColor : '#000000',//默认字体颜色
-    			itemBackgroundColor:'#FFFFFF',//默认背景颜色
+    			itemBackgroundColor:'RGB(199,237,204)',//默认背景颜色
     			itemOverColor : '#ffffff',//选中字体颜色
-    			itemOverBackgroundColor : '#006dcc',//选中背景颜色
+    			itemOverBackgroundColor : '#C9302C',//选中背景颜色
     			};
         var alwaysShowALL = true;
         var currentItem;
@@ -108,6 +108,8 @@
                 'left': suggestContainerLeft,
                 'min-width': suggestContainerWidth,
                 'position': 'absolute',
+                'font-size': '12px',
+                'font-family':'Arial',
                 'z-index': 99999,
                 'background-color': '#FFFFFF',
                 'overflow-y': 'auto'
