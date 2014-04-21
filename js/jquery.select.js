@@ -6,8 +6,11 @@
     			itemBackgroundColor:'RGB(199,237,204)',//默认背景颜色
     			itemOverColor : '#ffffff',//选中字体颜色
     			itemOverBackgroundColor : '#C9302C',//选中背景颜色
+    			itemPadding : 3 ,//item间距
+    			fontSize : 12 ,//默认字体大小
+    			alwaysShowALL : true //点击input是否展示所有可选项
     			};
-        var alwaysShowALL = true;
+        var maxFontNumber = 0;//最大字数
         var currentItem;
         var suggestContainerId = target + "-suggest";
         var suggestContainerWidth = $('#' + target).innerWidth();
@@ -33,13 +36,15 @@
         var _initItems = function(items) {
             suggestContainer.empty();
             for (var i = 0; i < items.length; i++) {
-                var suggestItem = $('<div>' + items[i].text + '</div>'); //创建一个子<div>
+            		if(items[i].text.length > maxFontNumber){
+            			maxFontNumber = items[i].text.length;
+            			}
+                var suggestItem = $('<div></div>'); //创建一个子<div>
                 suggestItem.attr('id', items[i].id);
+                suggestItem.append(items[i].text);
                 suggestItem.css({
-                		'padding-top':'3px',
-                		'padding-bottom':'3px',
+                		'padding':defaulOption.itemPadding + 'px',
                     'white-space':'nowrap',
-                    'display':'block',
                     'cursor': 'pointer',
                     'background-color': defaulOption.itemBackgroundColor,
                     'color': defaulOption.itemColor
@@ -95,24 +100,29 @@
 
         $('#' + target).bind("click",
         function() {
-            if (alwaysShowALL) {
+            if (defaulOption.alwaysShowALL) {
                 _initItems(data);
             } else {
                 _initItems(inputChange());
             }
             $('#' + suggestContainerId).removeAttr("style");
+            var tempWidth = defaulOption.fontSize*maxFontNumber + 2 * defaulOption.itemPadding + 10;
             $('#' + suggestContainerId).css({
                 'border': '1px solid #ccc',
                 'max-height': '200px',
                 'top': suggestContainerTop,
                 'left': suggestContainerLeft,
                 'min-width': suggestContainerWidth,
+                'width': tempWidth,
                 'position': 'absolute',
-                'font-size': '12px',
+                'font-size': defaulOption.fontSize+'px',
                 'font-family':'Arial',
                 'z-index': 99999,
                 'background-color': '#FFFFFF',
-                'overflow-y': 'auto'
+                'overflow-y': 'auto',
+                'overflow-x': 'hidden',
+                'white-space':'nowrap'
+
             });
             $('#' + suggestContainerId).show();
         });
