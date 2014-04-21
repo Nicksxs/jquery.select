@@ -107,13 +107,13 @@
             }
             $('#' + suggestContainerId).removeAttr("style");
             var tempWidth = defaulOption.fontSize*maxFontNumber + 2 * defaulOption.itemPadding + 10;
+            var containerWidth = Math.max(tempWidth, suggestContainerWidth);
             $('#' + suggestContainerId).css({
                 'border': '1px solid #ccc',
                 'max-height': '200px',
                 'top': suggestContainerTop,
                 'left': suggestContainerLeft,
-                'min-width': suggestContainerWidth,
-                'width': tempWidth,
+                'width': containerWidth,
                 'position': 'absolute',
                 'font-size': defaulOption.fontSize+'px',
                 'font-family':'Arial',
