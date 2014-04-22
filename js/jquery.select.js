@@ -106,7 +106,7 @@
                 _initItems(inputChange());
             }
             $('#' + suggestContainerId).removeAttr("style");
-            var tempWidth = defaulOption.fontSize*maxFontNumber + 2 * defaulOption.itemPadding + 10;
+            var tempWidth = defaulOption.fontSize*maxFontNumber + 2 * defaulOption.itemPadding + 30;
             var containerWidth = Math.max(tempWidth, suggestContainerWidth);
             $('#' + suggestContainerId).css({
                 'border': '1px solid #ccc',
